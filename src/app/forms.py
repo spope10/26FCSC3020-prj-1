@@ -1,7 +1,7 @@
 '''
 CSC3020 - Software Engineering Fundamentals
 Instructor: Thyago Mota
-Student(s):
+Student(s): Soni Pope
 Description: Project 1 - Schools
 '''
 
@@ -49,5 +49,5 @@ class SchoolDeleteForm(FlaskForm):
 class TransportationCostForm(FlaskForm):
     from_school_id = IntegerField('From', render_kw = {'disabled': 'disabled'})
     to_school_id = IntegerField('To', validators=[InputRequired()])
-    cost = IntegerField('Cost', validators=[DataRequired()])
+    cost = IntegerField('Cost', validators=[InputRequired()])
     submit = SubmitField('Confirm')

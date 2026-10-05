@@ -1,4 +1,37 @@
 @startuml class
 left to right direction
 
+class User {
+    id : String <<PK>>
+    name : String
+    about : String
+    passwd : LargeBinary
+}
+
+class School {
+    id : Integer <<PK>>
+    name : String
+    address : String
+    _type : Integer
+    status : Integer
+}
+
+class TransportationCost {
+    from_school_id : Integer <<PK, FK>>
+    to_school_id : Integer <<PK, FK>>
+    cost : Integer
+}
+
+School "1" -- "0..*" TransportationCost : from_school
+School "1" -- "0..*" TransportationCost : to_school
+
+note bottom of School
+    Type: elementary, middle, high school
+    Status: open, closed
+end note
+
+note bottom of User
+    passwd stores a hashed password.
+end note
+
 @enduml
