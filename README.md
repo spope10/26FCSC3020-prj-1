@@ -46,23 +46,21 @@ Additionally, the application will track the cost of transfering shared resource
 
 ## Schedule 
 
-Estimate a schedule for this project by completing the table below. 
-
-|Phase|Task|Start|End|Duration|Deliverable|
+| Phase | Task | Start | End | Duration | Deliverable |
 |---|---|---|---|---|---|
-|Modeling|Requirements Analysis|mm/dd/26|mm/dd/26|99 days|Use Case Diagram|
-|Modeling|Data Model|mm/dd/26|mm/dd/26|99 days|Class Diagram|
-|Construction|Coding|mm/dd/26|mm/dd/26|99 days|Code|
-|Construction|Testing|mm/dd/26|mm/dd/26|99 days|Test Report|
-|Deployment|Delivery|mm/dd/26|mm/dd/26|99 days|Final Commit/Push|
+| Modeling | Requirements Analysis | 10/04/26 | 10/04/26 | 15 minutes | Use Case Diagram |
+| Modeling | Data Model | 10/04/26 | 10/04/26 | 15 minutes | Class Diagram |
+| Construction | Coding | 10/04/26 | 10/04/26 | 90 minutes | Working application |
+| Construction | Testing | 10/04/26 | 10/04/26 | 20 minutes | Manual Test Report |
+| Deployment | Delivery | 10/04/26 | 10/04/26 | 20 minutes | Dockerfile, final commit/push, and Git bundle |
 
 ## Team Roles
 
 Assign roles to each team member by completing the table below. A member may take on more than one role.
 
-|Name|Role(s)|
-|--|--|
-|name|manager,developer,tester,documenter|
+| Name | Role(s) |
+|---|---|
+| Soni Pope | Manager, developer, tester, documenter |
 
 # Modeling Phase
 
@@ -128,17 +126,50 @@ Before beginning implementation, a team representative must meet with the instru
 
 # Testing Phase
 
-At this stage, you are not expected to write automated tests. Instead, you should perform manual testing, documenting your test results using the table provided below.
+# Testing Phase
 
-|Functionality Tested|Date|Time|Result|
-|--|--|--|--|
-|Sign Up|99/99/26|99:99|passed|
-|...|...|...|...|
+Manual testing was performed on October 4, 2026.
+Times below are approximate and use Denver local time.
+
+| Functionality Tested | Date | Time | Result |
+|---|---|---|---|
+| Sign up and log in | 10/04/26 | 21:59 | Passed. Created an account and logged in. |
+| Create and list schools | 10/04/26 | 22:02 | Passed. Schools A, B, and C appeared with their information. |
+| Save transportation costs | 10/04/26 | 22:06 | Passed. Saved costs between schools. |
+| Find shortest routes | 10/04/26 | 22:06 | Passed. A to C through B cost 12 instead of the direct cost of 20. |
+| Update a school | 10/04/26 | 22:07 | Passed. Changed School B's status to Closed. |
+| Delete a school | 10/04/26 | 22:17 | Passed after fixing form validation. Delete Test was removed. |
+| Sign out | 10/04/26 | 22:18 | Passed. Returned to the welcome page. |
+| Require login for schools | 10/04/26 | 22:18 | Passed. Visiting /schools after signing out redirected to login. |
+| Save a zero transportation cost | 10/04/26 | 22:19 | Passed. Saved a cost of 0 from School C to School A. |
+| Reject a negative transportation cost | 10/04/26 | 22:20 | Passed. Rejected -1 and kept the saved cost at 0. |
+| Update a transportation cost | 10/04/26 | 22:21 | Passed. Changed C to A from 0 to 3 without adding a duplicate row. |
 
 # Deployment Phase
 
 Commit and push your project using "final submission" as the commit message. Additionally, create a Docker image to allow the instructor to run your project in a containerized environment. To meet this requirement, include a **Dockerfile** in your repository that enables the instructor to build the image and run the application as a container.
 
+## Running the Application
+
+Install dependencies:
+
+python -m pip install -r requirements.txt
+
+Start the application:
+
+python -m flask --app src/app run
+
+Open http://127.0.0.1:5000 in a browser.
+
+## Docker
+
+A Dockerfile is included. Docker was not installed locally,
+so the image was not built or tested.
+
+To build and run the image:
+
+docker build -t schools-app .
+docker run --rm -p 5000:5000 schools-app
 # Team Evaluation 
 
 Please reflect on both your own contributions and those of your teammates using the descriptions provided for each dimension. You may refer back to these descriptions as you consider each person's role in the project.

@@ -1,3 +1,35 @@
 @startuml use_case
+left to right direction
+
+actor "Visitor" as Visitor
+actor "Registered User" as User
+
+rectangle "School District App" {
+    usecase "Sign up" as Signup
+    usecase "Log in" as Login
+    usecase "Sign out" as Logout
+    usecase "List schools" as List
+    usecase "Create a school" as Create
+    usecase "Update a school" as Update
+    usecase "Delete a school" as Delete
+    usecase "Manage transportation costs" as Costs
+    usecase "Find shortest routes" as Routes
+}
+
+Visitor -- Signup
+Visitor -- Login
+
+User -- Logout
+User -- List
+User -- Create
+User -- Update
+User -- Delete
+User -- Costs
+User -- Routes
+
+note bottom of User
+    School and transportation features
+    require the user to be logged in.
+end note
 
 @enduml

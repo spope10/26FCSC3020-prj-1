@@ -1,10 +1,50 @@
 {% extends 'base.html' %}
+
 {% block main %}
-        <form action="" method="POST" novalidate>
-            {{ form.hidden_tag() }}
-            <p>{{ form.from_school_id.label }} <br> {{ form.from_school_id(size=5) }}</p>
-            <p>{{ form.to_school_id.label }} <br> {{ form.to_school_id(size=5) }}</p>
-            <p>{{ form.cost.label }} <br> {{ form.cost(size=5) }}</p>
-            <p>{{ form.submit() }}</p>
-        </form>
+    <h2>Transportation costs from {{ school.name }}</h2>
+
+    <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        <p>
+            {{ form.from_school_id.label }}<br>
+            {{ form.from_school_id(size=5) }}
+        </p>
+
+        <p>
+            {{ form.to_school_id.label }}<br>
+            {{ form.to_school_id(size=5) }}
+        </p>
+
+        <p>
+            {{ form.cost.label }}<br>
+            {{ form.cost(size=5) }}
+        </p>
+
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    <h3>Saved costs</h3>
+
+    <table>
+        <tr>
+            <th>Destination ID</th>
+            <th>Destination school</th>
+            <th>Cost</th>
+        </tr>
+
+        {% for cost in costs %}
+            <tr>
+                <td>{{ cost.to_school_id }}</td>
+                <td>{{ cost.to_school.name }}</td>
+                <td>{{ cost.cost }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">No transportation costs saved.</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="{{ url_for('list_schools') }}">Back to schools</a></p>
 {% endblock %}
